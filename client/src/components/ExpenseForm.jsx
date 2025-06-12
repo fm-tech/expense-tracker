@@ -1,10 +1,12 @@
 import { useState } from "react";
 
-import { API_BASE } from "../config.js";
+import { getRuntimeConfig } from "../config.js";
 
 export default function ExpenseForm({ onSubmit }) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
+
+  const { API_BASE } = getRuntimeConfig();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -45,3 +45,10 @@ coverage/
 # === Misc ===
 # Logs
 logs/
+# Temporary files
+tmp/
+# Build artifacts
+build/
+# Documentation
+# Cache files
+.cache/

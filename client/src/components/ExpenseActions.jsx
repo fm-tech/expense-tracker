@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { API_BASE } from "../config";
+import { getRuntimeConfig } from "../config";
 
 export default function ExpenseActions({ expense, onEdit, onDelete }) {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(expense.title);
   const [amount, setAmount] = useState(expense.amount);
+
+  const { API_BASE } = getRuntimeConfig();
 
   const saveEdit = async () => {
     const res = await fetch(`${API_BASE}/expenses/${expense.id}`, {

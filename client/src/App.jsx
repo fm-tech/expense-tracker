@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import ExpenseSummary from "./components/ExpenseSummary";
-import { API_BASE } from "./config";
+import { getRuntimeConfig } from "./config";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
+
+  const { API_BASE } = getRuntimeConfig();
 
   const fetchExpenses = async () => {
     const res = await fetch(`${API_BASE}/expenses`);

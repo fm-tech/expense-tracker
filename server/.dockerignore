@@ -1,0 +1,10 @@
+# Ignore local deps & artifacts
+node_modules
+
+# Ignore local SQLite DB (we generate or mount it in container)
+prisma/dev.db
+prisma/dev.db-journal
+db_files/
+
+# Logs
+*.log
