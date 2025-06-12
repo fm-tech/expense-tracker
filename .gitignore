@@ -1,0 +1,37 @@
+# === Node & Bun ===
+node_modules/
+bun.lockb
+package-lock.json
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# === Environment files ===
+.env
+.env.*.local
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === Editors ===
+.vscode/
+.idea/
+
+# === Prisma / SQLite ===
+prisma/dev.db
+prisma/dev.db-journal
+prisma/migrations/
+
+server/dev.db
+server/dev.db-journal
+
+# === Client build ===
+client/node_modules/
+client/dist/
+
+# === Server modules ===
+server/node_modules/
+
+# === Test coverage ===
+coverage/
