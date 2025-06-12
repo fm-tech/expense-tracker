@@ -19,12 +19,17 @@ Thumbs.db
 .idea/
 
 # === Prisma / SQLite ===
-prisma/dev.db
-prisma/dev.db-journal
-prisma/migrations/
+server/prisma/dev.db
+server/prisma/dev.db-journal
+server/prisma/migrations/
 
-server/dev.db
-server/dev.db-journal
+server/prisma/dev.db
+server/prisma/dev.db-journal
+
+# Database Files to be exposed by docker
+server/db_files/
+
+
 
 # === Client build ===
 client/node_modules/
@@ -35,3 +40,8 @@ server/node_modules/
 
 # === Test coverage ===
 coverage/
+
+
+# === Misc ===
+# Logs
+logs/
