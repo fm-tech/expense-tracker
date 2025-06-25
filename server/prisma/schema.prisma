@@ -12,8 +12,18 @@ datasource db {
 }
 
 model Expense {
-  id        Int      @id @default(autoincrement())
-  title     String
-  amount    Float
-  createdAt DateTime @default(now())
+  id              Int      @id @default(autoincrement())
+  title           String
+  amount          Float
+  createdAt       DateTime @default(now())
+  lastUpdated     DateTime @updatedAt
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  email           String   @unique
+  name            String?
+  password        String
+  createdAt       DateTime @default(now())
+  lastUpdated     DateTime @updatedAt
 }
