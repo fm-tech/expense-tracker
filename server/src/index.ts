@@ -4,7 +4,7 @@ import expensesRoute from "./routes/exepenses";
 
 const app = new Hono();
 
-const ORIGIN = (Bun.env.FRONTEND_URL as string) || "http://localhost:5173";
+const ORIGIN = Bun.env.FRONTEND_URL as string;
 
 // Enable CORS for frontend dev
 app.use(
