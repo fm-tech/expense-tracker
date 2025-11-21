@@ -18,7 +18,7 @@ authRoute.post("/register", async (c) => {
   });
 
   const user = await prisma.user.create({
-    data: { email, hashedPassword },
+    data: { email, password: hashedPassword },
   });
 
   return c.json({ id: user.id, email: user.email });
