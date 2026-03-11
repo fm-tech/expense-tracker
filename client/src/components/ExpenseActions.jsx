@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { getRuntimeConfig } from "../config";
+import { useState } from 'react';
+import { getRuntimeConfig } from '../config.ts';
 
 export default function ExpenseActions({ expense, onEdit, onDelete }) {
   const [editing, setEditing] = useState(false);

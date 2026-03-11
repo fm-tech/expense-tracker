@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import ExpenseForm from "./components/ExpenseForm";
-import ExpenseList from "./components/ExpenseList";
-import ExpenseSummary from "./components/ExpenseSummary";
-import { getRuntimeConfig } from "./config";
+import { useEffect, useState } from 'react';
+import ExpenseForm from './components/ExpenseForm';
+import ExpenseList from './components/ExpenseList';
+import ExpenseSummary from './components/ExpenseSummary';
+import { getRuntimeConfig } from './config.ts';
 
 function App() {
   const [expenses, setExpenses] = useState([]);

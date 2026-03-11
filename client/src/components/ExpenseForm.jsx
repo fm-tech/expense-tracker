@@ -1,6 +1,5 @@
-import { useState } from "react";
-
-import { getRuntimeConfig } from "../config.js";
+import { useState } from 'react';
+import { getRuntimeConfig } from '../config.ts';
 
 export default function ExpenseForm({ onSubmit }) {
   const [title, setTitle] = useState("");

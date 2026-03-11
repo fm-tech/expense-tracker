@@ -1,0 +1,9 @@
+name = "expense-tracker-client"
+
+[[vars]]
+VITE_API_URL = "http://localhost:3000"
+VITE_NODE = "development"
+VITE_VERSION = "0.0.1"
+
+main = "src/index.ts"
+compatibility_date = "2026-03-11"

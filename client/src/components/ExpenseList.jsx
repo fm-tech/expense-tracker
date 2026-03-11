@@ -1,4 +1,4 @@
-import ExpenseActions from "./ExpenseActions";
+import ExpenseActions from './ExpenseActions';
 
 export default function ExpenseList({ expenses, onDelete, onEdit }) {
   if (!expenses.length) {
@@ -21,4 +21,3 @@ export default function ExpenseList({ expenses, onDelete, onEdit }) {
     </div>
   );
 }
-2;
