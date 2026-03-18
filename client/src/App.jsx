@@ -34,7 +34,7 @@ function App() {
 
   const handleEdit = (updated) => {
     setExpenses((prev) =>
-      prev.map((exp) => (exp.id === updated.id ? updated : exp))
+      prev.map((exp) => (exp.id === updated.id ? updated : exp)),
     );
   };
 
