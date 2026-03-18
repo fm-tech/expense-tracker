@@ -4,7 +4,7 @@ const ExpenseSummary = ({ expenses }) => {
   // Calculate total expenses
   const totalExpenses = expenses.reduce(
     (total, expense) => total + expense.amount,
-    0
+    0,
   );
 
   return (

@@ -11,17 +11,21 @@ export default function ExpenseForm({ onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`${API_BASE}/expenses`, {
+    const res = await fetch(`${API_BASE}/transactions`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, amount: parseFloat(amount) }),
+      body: JSON.stringify({ description: title, amount: parseFloat(amount) }),
     });
 
     const newExpense = await res.json();
-    onSubmit(newExpense);
 
-    setTitle("");
-    setAmount("");
+    if (newExpense.success) {
+      console.log("Expense added successfully!");
+      setTitle("");
+      setAmount(0);
+      // pop new expense to list
+      onSubmit(newExpense.payload);
+    }
   };
 
   return (

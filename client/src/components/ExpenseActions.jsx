@@ -2,17 +2,22 @@ import { useState } from "react";
 import { getRuntimeConfig } from "../config";
 
 export default function ExpenseActions({ expense, onEdit, onDelete }) {
+  // Validate expense object
+  if (!expense || typeof expense !== "object") {
+    return <div className="text-red-500">Expense data unavailable.</div>;
+  }
+
   const [editing, setEditing] = useState(false);
-  const [title, setTitle] = useState(expense.title);
-  const [amount, setAmount] = useState(expense.amount);
+  const [title, setTitle] = useState(expense.title ?? "");
+  const [amount, setAmount] = useState(expense.amount ?? 0);
 
   const { API_BASE } = getRuntimeConfig();
 
   const saveEdit = async () => {
-    const res = await fetch(`${API_BASE}/expenses/${expense.id}`, {
+    const res = await fetch(`${API_BASE}/transactions/${expense.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, amount: parseFloat(amount) }),
+      body: JSON.stringify({ description: title, amount: parseFloat(amount) }),
     });
 
     const updated = await res.json();
@@ -21,7 +26,7 @@ export default function ExpenseActions({ expense, onEdit, onDelete }) {
   };
 
   const handleDelete = async () => {
-    await fetch(`${API_BASE}/expenses/${expense.id}`, { method: "DELETE" });
+    await fetch(`${API_BASE}/transactions/${expense.id}`, { method: "DELETE" });
     onDelete(expense.id);
   };
 
@@ -71,10 +76,18 @@ export default function ExpenseActions({ expense, onEdit, onDelete }) {
       {/* Display */}
       <div className="flex flex-col">
         <span className="text-lg font-semibold text-gray-900 dark:text-white">
-          {expense.title}
+          {expense.description ?? "No description"}
         </span>
         <span className="text-gray-500 dark:text-gray-400">
-          ${expense.amount.toFixed(2)}
+          $
+          {typeof expense.amount === "number"
+            ? expense.amount.toFixed(2)
+            : "---"}
+        </span>
+        <span>
+          {expense.created
+            ? new Date(expense.created).toLocaleString()
+            : "No date"}
         </span>
       </div>
       {/* Edit/Delete buttons */}

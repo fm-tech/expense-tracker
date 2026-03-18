@@ -11,9 +11,27 @@ function App() {
   const { API_BASE } = getRuntimeConfig();
 
   const fetchExpenses = async () => {
-    const res = await fetch(`${API_BASE}/expenses`);
-    const data = await res.json();
-    setExpenses(data);
+    // // PAYLOAD EXAMPLE
+    // {
+    //     "success": true,
+    //     "payload": [
+    //         {
+    //             "amount": 111,
+    //             "collectionId": "pbc_1034379284",
+    //             "collectionName": "transaction",
+    //             "created": "2026-03-17 18:10:08.485Z",
+    //             "credit": false,
+    //             "description": "test",
+    //             "id": "kxpcs5brj3n3ux0",
+    //             "updated": "2026-03-18 07:12:23.444Z"
+    //         }
+    //     ]
+    // }
+    const res = await fetch(`${API_BASE}/transactions`);
+    const response = await res.json();
+    if (response.success) {
+      setExpenses(response.payload);
+    }
   };
 
   useEffect(() => {
@@ -51,12 +69,16 @@ function App() {
       </div>
 
       <ExpenseForm onSubmit={handleNewExpense} />
-      <ExpenseSummary expenses={expenses} />
-      <ExpenseList
-        expenses={expenses}
-        onDelete={handleDelete}
-        onEdit={handleEdit}
-      />
+      {expenses && (
+        <>
+          <ExpenseSummary expenses={expenses} />
+          <ExpenseList
+            expenses={expenses}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        </>
+      )}
     </div>
   );
 }
