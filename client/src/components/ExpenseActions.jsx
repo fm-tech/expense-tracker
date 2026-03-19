@@ -72,7 +72,11 @@ export default function ExpenseActions({ expense, onEdit, onDelete }) {
   }
 
   return (
-    <div className={wrapperClasses}>
+    <div
+      className={wrapperClasses + " group"}
+      tabIndex={0}
+      style={{ outline: "none" }}
+    >
       {/* Display */}
       <div className="flex flex-col">
         <span className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -91,7 +95,13 @@ export default function ExpenseActions({ expense, onEdit, onDelete }) {
         </span>
       </div>
       {/* Edit/Delete buttons */}
-      <div className="flex gap-2 mt-3 sm:mt-0">
+      <div
+        className="
+          flex gap-2 mt-3 sm:mt-0
+          opacity-0 group-hover:opacity-100 group-focus-within:opacity-100
+          transition-opacity duration-200
+        "
+      >
         <button
           className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600"
           onClick={() => setEditing(true)}
