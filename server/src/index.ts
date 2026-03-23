@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import expensesRoute from "./routes/exepenses";
+import authRoute from "./routes/auth";
 
 const app = new Hono();
 
@@ -20,7 +21,8 @@ app.use(
 // Health check
 app.get("/", (c) => c.text("Expense Tracker API is running 🚀"));
 
-// Mount expenses route
+// Mount routes
+app.route("/auth", authRoute);
 app.route("/expenses", expensesRoute);
 
 export default {
