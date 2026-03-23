@@ -22,9 +22,7 @@ function Auth() {
       });
       if (!res.ok) throw new Error("Login failed");
       const data = await res.json();
-      // logging
-      console.log("Login successful:", data);
-      setUser({ ...data.user }); // Set user in store
+      setUser({ token: data.token, user: data.user }); // Set user in store
       navigate("/expenses");
     } catch (err) {
       console.error(err);
