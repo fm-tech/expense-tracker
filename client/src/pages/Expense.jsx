@@ -12,7 +12,7 @@ export default function ExpensePage() {
 
   const fetchExpenses = async () => {
     try {
-      const res = await fetch(`${API_BASE}/expenses`);
+      const res = await fetch(`${API_BASE}/transactions`);
       const response = await res.json();
       if (response.success) {
         setExpenses(response.payload);

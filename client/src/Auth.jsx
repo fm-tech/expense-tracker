@@ -22,7 +22,13 @@ function Auth() {
       });
       if (!res.ok) throw new Error("Login failed");
       const data = await res.json();
-      setUser({ token: data.token, user: data.user }); // Set user in store
+      // For this example, we'll store just the email as user data
+      // In a real app, you'd typically get a full user object with token
+      setUser({ token: data.token, user: data.user });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ token: data.token, user: data.user }),
+      );
       navigate("/expenses");
     } catch (err) {
       console.error(err);
