@@ -6,14 +6,24 @@ import { getRuntimeConfig } from "../config";
 
 export default function ExpensePage() {
   const [expenses, setExpenses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { API_BASE } = getRuntimeConfig();
 
   const fetchExpenses = async () => {
-    const res = await fetch(`${API_BASE}/transactions`);
-    const response = await res.json();
-    if (response.success) {
-      setExpenses(response.payload);
+    try {
+      const res = await fetch(`${API_BASE}/expenses`);
+      const response = await res.json();
+      if (response.success) {
+        setExpenses(response.payload);
+      } else {
+        setExpenses([]);
+      }
+    } catch (error) {
+      console.error("Failed to fetch expenses:", error);
+      setExpenses([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -29,14 +39,14 @@ export default function ExpensePage() {
   const handleEdit = (updated) =>
     setExpenses((prev) => prev.map((e) => (e.id === updated.id ? updated : e)));
 
-  if (!expenses.length) {
+  if (loading) {
     return <div>Loading expenses...</div>;
   }
 
   return (
     <>
       <ExpenseForm onSubmit={handleNewExpense} />
-      {expenses && (
+      {expenses && expenses.length > 0 && (
         <>
           <ExpenseSummary expenses={expenses} />
           <ExpenseList
